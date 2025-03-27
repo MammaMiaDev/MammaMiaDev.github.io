@@ -36,6 +36,12 @@ jobs:
       - name: Build
         run: pnpm build
 
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+          ls -la
+
       - name: Upload artifact 📡
         uses: actions/upload-pages-artifact@v3
         with:
