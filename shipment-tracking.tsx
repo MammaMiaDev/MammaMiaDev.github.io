@@ -174,7 +174,7 @@ export default function ShipmentTracking() {
         <Separator className="my-4" />
 
         <div className="text-center text-sm text-muted-foreground">
-          Special thanks to the &quot;Cucca Bros&quot; team
+          Made with ❤ by Cucca Labs
         </div>
 
         </CardContent>
