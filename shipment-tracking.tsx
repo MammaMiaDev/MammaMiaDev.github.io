@@ -170,6 +170,13 @@ export default function ShipmentTracking() {
               <span className="text-sm font-medium">3.5 kg</span>
             </div>
           </div>
+
+        <Separator className="my-4" />
+
+        <div className="text-center text-sm text-muted-foreground">
+          Special thanks to the &quot;Cucca Bros&quot; team
+        </div>
+
         </CardContent>
       </Card>
 
