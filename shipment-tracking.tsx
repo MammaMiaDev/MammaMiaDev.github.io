@@ -1,5 +1,5 @@
 "use client"
-import { CalendarClock, Check, Clock, Package, FileSignature, BadgeCheck, ShieldAlert } from "lucide-react"
+import { CalendarClock, Check, Clock, Package, FileSignature, ShieldAlert } from "lucide-react"
 import { format } from "date-fns"
 
 import { Badge } from "@/components/ui/badge"
@@ -53,10 +53,10 @@ export default function ShipmentTracking() {
     {
       id: 4,
       title: "Further checks",
-      details: "Waiting for more details from the customs office",
+      details: "Package compliant to EU regulations. Further checks completed.",
       date: "April 14, 2025",
       icon: <FileSignature className="h-4 w-4" />,
-      status: "in-progress",
+      status: "completed",
     },
     {
       id: 5,
@@ -64,7 +64,7 @@ export default function ShipmentTracking() {
       details: "Your Cinghialino is on its way to you",
       date: "",
       icon: <Clock className="h-4 w-4" />,
-      status: "pending",
+      status: "in-progress",
     },
     {
       id: 6,
