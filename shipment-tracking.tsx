@@ -70,7 +70,7 @@ export default function ShipmentTracking() {
       id: 6,
       title: "Delivery",
       details: "Your Cinghialino will arrive soon",
-      date: "August 20, 2025",
+      date: format(estimatedDeliveryDate, "MMMM dd, yyyy"),
       icon: <CalendarClock className="h-4 w-4" />,
       status: "pending",
     },
