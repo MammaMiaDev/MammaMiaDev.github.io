@@ -10,10 +10,19 @@ import { cn } from "@/lib/utils"
 import { SupportChat } from "./components/support-chat"
 
 export default function ShipmentTracking() {
+  const shipped = false;
+
   // Shipment dates
   const orderPlacementDate = new Date("2024-11-22")
   const estimatedDeliveryDate = new Date("2025-08-29")
   const currentDate = new Date()
+  const shippingDelayDays = !shipped && currentDate > estimatedDeliveryDate ? Math.max(
+        0,
+        Math.floor(
+          (currentDate.getTime() - estimatedDeliveryDate.getTime()) /
+          (24 * 60 * 60 * 1000)
+        )
+      ) : 0;
 
   // Calculate progress percentage
   const totalDuration = estimatedDeliveryDate.getTime() - orderPlacementDate.getTime()
@@ -33,6 +42,7 @@ export default function ShipmentTracking() {
       date: format(orderPlacementDate, "MMMM dd, yyyy"),
       icon: <Check className="h-4 w-4" />,
       status: "completed",
+      delay: 0,
     },
     {
       id: 2,
@@ -41,6 +51,7 @@ export default function ShipmentTracking() {
       date: "December 11, 2024",
       icon: <Package className="h-4 w-4" />,
       status: "completed",
+      delay: 0,
     },
     {
       id: 3,
@@ -49,6 +60,7 @@ export default function ShipmentTracking() {
       date: "January 14, 2025",
       icon: <ShieldAlert className="h-4 w-4" />,
       status: "completed",
+      delay: 0,
     },
     {
       id: 4,
@@ -57,6 +69,7 @@ export default function ShipmentTracking() {
       date: "April 14, 2025",
       icon: <FileSignature className="h-4 w-4" />,
       status: "completed",
+      delay: 0,
     },
     {
       id: 5,
@@ -65,14 +78,16 @@ export default function ShipmentTracking() {
       date: "",
       icon: <Clock className="h-4 w-4" />,
       status: "in-progress",
+      delay: shippingDelayDays,
     },
     {
       id: 6,
       title: "Delivery",
-      details: "Your Cinghialino will arrive soon",
+      details: "Waiting for delivery to be submitted",
       date: format(estimatedDeliveryDate, "MMMM dd, yyyy"),
       icon: <CalendarClock className="h-4 w-4" />,
       status: "pending",
+      delay: 0,
     },
   ]
 
@@ -108,6 +123,22 @@ export default function ShipmentTracking() {
                 <span className="font-medium text-primary">{remainingDays}</span>
                 <span className="text-muted-foreground">days remaining</span>
               </div>
+            </div>
+            <div className="flex justify-end mt-2">
+              {/* Shipping delay badge */}
+              {shippingDelayDays > 0 && (
+              <Badge variant="destructive" className="ml-2">
+                {shippingDelayDays}{" "}
+                days delay
+              </Badge>
+              )}
+            </div>
+            <div className="flex justify-end">
+              {shipped && (
+              <Badge variant="success">
+                Delivered
+              </Badge>
+              )}
             </div>
           </div>
 
@@ -147,6 +178,14 @@ export default function ShipmentTracking() {
                       <div className="text-sm font-medium">{event.title}</div>
                       <div className="text-sm text-muted-foreground">{event.details}</div>
                       <div className="text-xs text-muted-foreground mt-1">{event.date}</div>
+                      <div>
+                        {event.delay > 0 && (
+                          <Badge variant="destructive">
+                            {event.delay}{" "}
+                            days delay
+                          </Badge>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -184,4 +223,3 @@ export default function ShipmentTracking() {
     </div>
   )
 }
-
