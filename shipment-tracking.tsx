@@ -10,12 +10,12 @@ import { cn } from "@/lib/utils"
 import { SupportChat } from "./components/support-chat"
 
 export default function ShipmentTracking() {
-  const shipped = false;
+  const shipped = true;
 
   // Shipment dates
   const orderPlacementDate = new Date("2024-11-22")
   const estimatedDeliveryDate = new Date("2025-08-29")
-  const currentDate = new Date()
+  const currentDate = new Date("2025-08-29");
   const shippingDelayDays = !shipped && currentDate > estimatedDeliveryDate ? Math.max(
         0,
         Math.floor(
@@ -23,6 +23,14 @@ export default function ShipmentTracking() {
           (24 * 60 * 60 * 1000)
         )
       ) : 0;
+  const actualDeliveryDate = new Date("2025-09-01");
+  const actualDelayDays = Math.max(
+        0,
+        Math.floor(
+          (actualDeliveryDate.getTime() - estimatedDeliveryDate.getTime()) /
+          (24 * 60 * 60 * 1000)
+        )
+      );
 
   // Calculate progress percentage
   const totalDuration = estimatedDeliveryDate.getTime() - orderPlacementDate.getTime()
@@ -82,11 +90,11 @@ export default function ShipmentTracking() {
     },
     {
       id: 6,
-      title: "Delivery",
-      details: "Waiting for delivery to be submitted",
+      title: "Delivered",
+      details: `Delivered to your doorstep with ${actualDelayDays} days delay.`,
       date: format(new Date(), "MMMM dd, yyyy"),
       icon: <CalendarClock className="h-4 w-4" />,
-      status: "in-progress",
+      status: "completed",
       delay: 0,
     },
   ]
