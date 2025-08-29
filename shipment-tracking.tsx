@@ -32,7 +32,7 @@ export default function ShipmentTracking() {
         )
       );
 
-      // Calculate progress percentage
+  // Calculate progress percentage
   const totalDuration = estimatedDeliveryDate.getTime() - orderPlacementDate.getTime()
   const elapsedDuration = currentDate.getTime() - orderPlacementDate.getTime()
   const progressPercentage = Math.min(Math.max(Math.floor((elapsedDuration / totalDuration) * 100), 0), 100)
