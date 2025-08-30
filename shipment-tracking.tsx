@@ -31,7 +31,7 @@ export default function ShipmentTracking() {
 
   // Calculate weeks and days
   const elapsedWeeks = Math.floor(elapsedDuration / (7 * 24 * 60 * 60 * 1000))
-  const remainingDays = Math.ceil((estimatedDeliveryDate.getTime() - currentDate.getTime()) / (24 * 60 * 60 * 1000))
+  const remainingDays = Math.max(Math.ceil((estimatedDeliveryDate.getTime() - currentDate.getTime()) / (24 * 60 * 60 * 1000)), 0);
 
   // Timeline events
   const timelineEvents = [
