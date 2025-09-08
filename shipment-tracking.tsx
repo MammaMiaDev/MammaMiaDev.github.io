@@ -23,7 +23,7 @@ export default function ShipmentTracking() {
           (24 * 60 * 60 * 1000)
         )
       ) : 0;
-  const actualDeliveryDate = new Date("2025-09-01");
+  const actualDeliveryDate = new Date("2025-09-08");
   const actualDelayDays = Math.max(
         0,
         Math.floor(
