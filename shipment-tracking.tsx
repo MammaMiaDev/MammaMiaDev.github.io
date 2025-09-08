@@ -214,7 +214,7 @@ export default function ShipmentTracking() {
             </div>
             <div className="flex justify-between">
               <span className="text-sm text-muted-foreground">Package Weight</span>
-              <span className="text-sm font-medium">3.5 kg</span>
+              <span className="text-sm font-medium">3.775 kg</span>
             </div>
           </div>
 
