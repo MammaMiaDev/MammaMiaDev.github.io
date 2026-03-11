@@ -92,10 +92,10 @@ export default function ShipmentTracking() {
       id: 6,
       title: "Delivered",
       details: `Delivered to your doorstep with ${actualDelayDays} days delay.`,
-      date: format(new Date(), "MMMM dd, yyyy"),
+      date: format(actualDeliveryDate, "MMMM dd, yyyy"),
       icon: <CalendarClock className="h-4 w-4" />,
       status: "completed",
-      delay: 0,
+      delay: actualDelayDays,
     },
   ]
 
@@ -133,18 +133,18 @@ export default function ShipmentTracking() {
               </div>
             </div>
             <div className="flex justify-end mt-2">
-              {/* Shipping delay badge */}
-              {shippingDelayDays > 0 && (
-              <Badge variant="destructive" className="ml-2">
-                {shippingDelayDays}{" "}
-                days delay
+               {shipped && (
+              <Badge variant="success">
+                Delivered
               </Badge>
               )}
             </div>
-            <div className="flex justify-end">
-              {shipped && (
-              <Badge variant="success">
-                Delivered
+            <div className="flex justify-end mt-2">
+             {/* Shipping delay badge */}
+              {actualDelayDays > 0 && (
+              <Badge variant="destructive" className="ml-2">
+                {actualDelayDays}{" "}
+                days delay
               </Badge>
               )}
             </div>
